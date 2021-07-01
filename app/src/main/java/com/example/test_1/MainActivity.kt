@@ -17,13 +17,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import com.example.test_1.ui.theme.TEST_1Theme
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.HiltAndroidApp
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
+@HiltAndroidApp
 class App : Application()
 
-class TestViewModel() : ViewModel() {
+@HiltViewModel
+class TestViewModel @Inject constructor() : ViewModel() {
 
 }
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,22 +50,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                     Text(text = "Allah", Modifier.padding(8.dp))
                 }
-
-//                Surface(color = MaterialTheme.colors.background) {
-//                    Column(
-//                        Modifier.fillMaxSize(),
-//                        verticalArrangement = Arrangement.Center,
-//                        horizontalAlignment = Alignment.CenterHorizontally
-//                    ) {
-//                        Text(
-//                            "Allah",
-//                            style = MaterialTheme.typography.h1,
-//                            modifier = Modifier.wrapContentSize(),
-//                            textAlign = TextAlign.Center
-//                        )
-//                    }
-//                }
             }
         }
     }
 }
+
