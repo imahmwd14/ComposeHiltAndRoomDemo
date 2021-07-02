@@ -1,4 +1,4 @@
-package com.example.test_1
+package com.example.composedemo
 
 import android.app.Application
 import android.content.Context
@@ -56,7 +56,8 @@ class MainActivity : ComponentActivity() {
             MaterialTheme {
                 Scaffold(
                     Modifier
-                        .fillMaxSize(),
+                        .fillMaxSize()
+                        .background(Companion.LightGray),
                 ) {
                     val namesList by namesViewModel.dao.getAllNames().observeAsState()
 
@@ -123,11 +124,20 @@ fun Home(namesList: List<Name>, deleteName: (Name) -> Unit, addNewName: (String)
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(
-                                text = name.name,
-                                Modifier.padding(8.dp),
-                                style = MaterialTheme.typography.body1
-                            )
+
+                            Column {
+                                Text(
+                                    text = name.name,
+                                    Modifier.padding(4.dp),
+                                    style = MaterialTheme.typography.h6
+                                )
+                                Text(
+                                    text = "ID: ${name.Id.toString()}",
+                                    Modifier.padding(4.dp),
+                                    style = MaterialTheme.typography.body2
+                                )
+                            }
+
                             IconButton(onClick = { deleteName(name) }) {
                                 Icon(Icons.Filled.Delete, "")
                             }

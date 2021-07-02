@@ -1,4 +1,4 @@
-package com.example.test_1
+package com.example.composedemo
 
 import org.junit.Test
 
